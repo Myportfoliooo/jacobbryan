@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calories to Kilo Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(56,239,125,0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 20%, rgba(17,153,142,0.2) 0%, transparent 40%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px),
+                repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 60px),
+                repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 60px);
+            animation: moveGrid 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(50px, 50px) rotate(5deg); }
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .shape1 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        
+        .shape2 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #38ef7d, #11998e);
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape3 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            bottom: 15%;
+            left: 25%;
+            animation-delay: 4s;
+        }
+        
+        .shape4 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #38ef7d, #11998e);
+            top: 30%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-30px) translateX(20px) rotate(90deg); }
+            50% { transform: translateY(-60px) translateX(0) rotate(180deg); }
+            75% { transform: translateY(-30px) translateX(-20px) rotate(270deg); }
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(56, 239, 125, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .container::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(17, 153, 142, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .converter-section {
+            margin-bottom: 30px;
+        }
+        
+        .converter-section h2 {
+            color: #11998e;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #38ef7d;
+            padding-bottom: 8px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input:focus {
+            border-color: #11998e;
+            box-shadow: 0 0 15px rgba(17, 153, 142, 0.3);
+            outline: none;
+            transform: translateY(-2px);
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);
+            margin-bottom: 15px;
+        }
+        
+        button:hover {
+            background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            background: linear-gradient(135deg, rgba(17, 153, 142, 0.1), rgba(56, 239, 125, 0.1));
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            border: 2px solid rgba(17, 153, 142, 0.3);
+        }
+        
+        .result-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #11998e;
+            margin: 10px 0;
+        }
+        
+        .result-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, rgba(56, 239, 125, 0.15), rgba(17, 153, 142, 0.15));
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #38ef7d;
+        }
+        
+        .info-box h3 {
+            color: #11998e;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+    </div>
+    
+    <div class="container">
+        <h1>🔥 Calories to Kilo Converter 🔥</h1>
+        <p class="subtitle">Calculate weight loss based on calorie deficit</p>
+        
+        <div class="converter-section">
+            <h2>Enter Your Information</h2>
+            
+            <div class="input-group">
+                <label for="calories">Total Calories Burned:</label>
+                <input type="number" id="calories" placeholder="e.g., 7700" min="0" step="100">
+            </div>
+            
+            <button onclick="convertCaloriesToKg()">Convert to Kilograms</button>
+            
+            <div class="result" id="result" style="display: none;">
+                <p class="result-label">Weight Loss</p>
+                <p class="result-value" id="resultValue">0 kg</p>
+            </div>
+        </div>
+        
+        <div class="converter-section">
+            <h2>Reverse Calculator</h2>
+            
+            <div class="input-group">
+                <label for="kilograms">Target Weight Loss (kg):</label>
+                <input type="number" id="kilograms" placeholder="e.g., 1" min="0" step="0.1">
+            </div>
+            
+            <button onclick="convertKgToCalories()">Calculate Calories Needed</button>
+            
+            <div class="result" id="reverseResult" style="display: none;">
+                <p class="result-label">Calories to Burn</p>
+                <p class="result-value" id="reverseResultValue">0 kcal</p>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h3>💡 How it Works</h3>
+            <p>• 1 kilogram of body fat ≈ 7,700 calories</p>
+            <p>• To lose 1 kg, you need a calorie deficit of 7,700 kcal</p>
+            <p>• This calculator uses the standard conversion rate</p>
+            <p>• Results are approximate and may vary by individual</p>
+        </div>
+    </div>
+    
+    <script>
+        function convertCaloriesToKg() {
+            const calories = parseFloat(document.getElementById('calories').value);
+            
+            if (isNaN(calories) || calories <= 0) {
+                alert('Please enter a valid number of calories');
+                return;
+            }
+            
+            // 7700 calories = 1 kg of fat
+            const kg = calories / 7700;
+            
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('resultValue').textContent = kg.toFixed(2) + ' kg';
+        }
+        
+        function convertKgToCalories() {
+            const kg = parseFloat(document.getElementById('kilograms').value);
+            
+            if (isNaN(kg) || kg <= 0) {
+                alert('Please enter a valid weight in kilograms');
+                return;
+            }
+            
+            // 1 kg of fat = 7700 calories
+            const calories = kg * 7700;
+            
+            document.getElementById('reverseResult').style.display = 'block';
+            document.getElementById('reverseResultValue').textContent = calories.toLocaleString() + ' kcal';
+        }
+    </script>
+</body>
+</html>

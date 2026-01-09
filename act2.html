@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Tinola Recipe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: drift 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            font-weight: bold;
+        }
+        .recipe-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .recipe-info p {
+            margin: 5px 0;
+            font-size: 1.05em;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section h2 {
+            color: #f5576c;
+            border-bottom: 3px solid #f5576c;
+            padding-bottom: 12px;
+            font-size: 1.9em;
+            margin-bottom: 20px;
+        }
+        .ingredients {
+            list-style-type: none;
+            padding: 0;
+        }
+        .ingredients li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(to right, rgba(240, 147, 251, 0.08), transparent);
+            margin-bottom: 8px;
+            padding-left: 45px;
+            position: relative;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .ingredients li:hover {
+            background: linear-gradient(to right, rgba(240, 147, 251, 0.15), transparent);
+            transform: translateX(5px);
+        }
+        .ingredients li::before {
+            content: "🥬";
+            position: absolute;
+            left: 12px;
+            font-size: 1.3em;
+        }
+        .instructions {
+            line-height: 1.7;
+        }
+        .instructions ol {
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 18px;
+            padding: 15px;
+            background: linear-gradient(120deg, rgba(245, 87, 108, 0.08), rgba(240, 147, 251, 0.08));
+            border-left: 5px solid #f5576c;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .instructions li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.2);
+        }
+        .tips {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.15), rgba(245, 87, 108, 0.15));
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #f093fb;
+            box-shadow: 0 5px 20px rgba(240, 147, 251, 0.2);
+        }
+        .tips h3 {
+            color: #f5576c;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        .tips ul {
+            margin: 10px 0;
+        }
+        .tips li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #777;
+            font-size: 0.95em;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥣 Chicken Tinola Recipe 🥣</h1>
+        <div class="recipe-info">
+            <p><strong>Prep Time:</strong> 10 minutes | <strong>Cook Time:</strong> 30 minutes | <strong>Serves:</strong> 4-6</p>
+            <p>A comforting Filipino chicken soup with ginger, green papaya, and sayote – warming, nutritious, and perfect for rainy days!</p>
+        </div>
+        
+        <div class="section">
+            <h2>Ingredients</h2>
+            <ul class="ingredients">
+                <li>1 kg chicken, cut into serving pieces (thighs and drumsticks work best)</li>
+                <li>2 thumbs fresh ginger, sliced thinly</li>
+                <li>1 medium onion, quartered</li>
+                <li>3 cloves garlic, minced</li>
+                <li>2 medium sayote (chayote squash), peeled and cut into wedges</li>
+                <li>1 small green papaya, peeled, seeded, and cut into wedges (or use ripe papaya for sweetness)</li>
+                <li>1 cup malunggay (moringa) leaves or spinach, washed</li>
+                <li>1 tbsp fish sauce (patis)</li>
+                <li>6-8 cups water or chicken broth</li>
+                <li>2 tbsp cooking oil</li>
+                <li>Salt and pepper to taste</li>
+                <li>Optional: 2 green chilies (siling haba) for a mild kick</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Instructions</h2>
+            <div class="instructions">
+                <ol>
+                    <li>Heat the cooking oil in a large pot over medium heat. Sauté the garlic, ginger, and onion until fragrant and the ginger is lightly browned, about 2-3 minutes. This step infuses the oil with ginger's warming flavor.</li>
+                    <li>Add the chicken pieces to the pot. Stir to coat with the aromatics and cook until the chicken skin is lightly browned, about 5 minutes. Season with fish sauce, salt, and pepper.</li>
+                    <li>Pour in the water or chicken broth. Bring to a boil, then reduce heat to a simmer. Skim off any scum that rises to the surface for a clearer broth. Cover and simmer for 15-20 minutes until the chicken is tender.</li>
+                    <li>Add the sayote and green papaya wedges. If using green chilies, add them now. Continue simmering for 8-10 minutes until the vegetables are just tender but still crisp.</li>
+                    <li>Stir in the malunggay leaves (or spinach) and cook for another 1-2 minutes until wilted. Do not overcook to retain nutrients and color. Taste and adjust seasoning if needed.</li>
+                    <li>Remove from heat and let it rest for a few minutes. Serve hot with steamed rice on the side.</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Tips & Variations</h2>
+            <div class="tips">
+                <h3>Pro Tips:</h3>
+                <ul>
+                    <li>For extra flavor, use free-range chicken or add a dash of lemongrass (tanglad) during sautéing.</li>
+                    <li>If green papaya is unavailable, substitute with potatoes or more sayote – but papaya adds a unique subtle sweetness.</li>
+                    <li>This soup is great for colds; the ginger provides natural warmth and aids digestion.</li>
+                    <li>Vegetarian version: Use tofu or mushrooms instead of chicken for a lighter take.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Enjoy this simple yet soul-soothing Filipino staple! Mabuhi gid! 🇵🇭</p>
+        </footer>
+    </div>
+</body>
+</html>
